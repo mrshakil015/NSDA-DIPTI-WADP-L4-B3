@@ -15,7 +15,7 @@ class RecruitersModel(models.Model):
     CompanyName = models.CharField(max_length=100,null=True)
     CompanyAddress = models.CharField(max_length=100,null=True)
     CompanyLogo = models.ImageField(upload_to='media/logo/',null=True)
-    
+ 
 class SeekerModel(models.Model):
     jobuser = models.OneToOneField(JobPortalUser,on_delete=models.CASCADE,related_name='seekermodel',null=True)
     SkillsSet = models.TextField(null=True)
@@ -23,8 +23,8 @@ class SeekerModel(models.Model):
     
 class JobModel(models.Model):
     Title = models.CharField(max_length=100,null=True)
-    NumberOfOpenings = models.CharField(max_length=50,null=True)
+    Number_Of_Openings = models.CharField(max_length=50,null=True)
     Category = models.CharField(max_length=50,null=True)
-    JobDescription = models.TextField(null=True)
-    SkillsSet = models.TextField(null=True)
-    CreatedBy = models.ForeignKey(JobPortalUser,on_delete=models.CASCADE,null=True)
+    Job_Description = models.TextField(null=True)
+    Skills_Set = models.TextField(null=True)
+    Created_By = models.ForeignKey(JobPortalUser,on_delete=models.CASCADE,null=True)

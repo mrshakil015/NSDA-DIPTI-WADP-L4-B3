@@ -35,7 +35,7 @@
     <div class="col-lg-5 mt-3 mb-3">
         <div class="card">
             <div class="card-header">
-                <h4>Create Account</h4>
+                <h4>Login Account</h4>
             </div>
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data">
@@ -46,32 +46,13 @@
                         <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
                     </div>
                     <div class="form-group">
-                        <label for="username">Display Name</label>
-                        <input type="text" class="form-control" id="displayname" name="displayname" placeholder="Enter username">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Enter username">
-                    </div>
-                    <div class="form-group">
-                        <label for="usertype">User Type</label>
-                        <select class="form-control" id="usertype" name="usertype">
-                            <option value="Recruiters">Recruiters</option>
-                            <option value="Jobseekers">Jobseekers</option>
-                        </select>
-                    </div>
-                   
-                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
                     </div>
-                    <div class="form-group">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm-password" name="confirm_password" placeholder="Confirm password">
-                    </div>
+ 
 
-                    <button type="submit" class="btn btn-primary btn-block">Signup</button>
-                    <a href="{% url 'loginPage' %}">Already have an account?</a>
+                    <button type="submit" class="btn btn-primary btn-block">Signin</button>
+                    <a href="{% url 'registrationPage' %}">Dont have any account?</a>
                 </form>
             </div>
         </div>
