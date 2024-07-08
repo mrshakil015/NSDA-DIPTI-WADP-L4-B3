@@ -71,7 +71,89 @@ def addjob(request):
     }
     return render(request,'addjob.html',context)
 
+@login_required
 def browsejob(request):
+    current_user= request.user
+    usertype = request.user.UserType
+    if usertype == 'Recruiters':
+        jobdata= JobModel.objects.filter(Created_By=current_user)
+    else:
+        jobdata= JobModel.objects.all()
+        
+
+    # jobdata = []
+    # if current_user.is_authenticated:
+    #     userdata = get_object_or_404(JobPortalUser, username=current_user)
+    #     for job in data:
+    #         applied = jobApplyModel.objects.filter(job=job, applicant=userdata).exists()
+    #         jobdata.append({
+    #             'job':job,
+    #             'applied':applied,
+    #         })
+        
+    # elif current_user.is_anonymous:
+    #    for job in data:
+    #         jobdata.append({
+    #             'job':job,
+    #             'applied':'False',
+    #         })
+    context = {
+        'jobdata':jobdata
+    }
     
+    return render(request, 'browsejob.html',context)
+
+
+@login_required
+def editjob(request, myid):
     
-    return render(request, 'browsejob.html')
+    jobdata = get_object_or_404(JobModel, id=myid)
+    if request.method == 'POST':
+        jobform = JobForm(request.POST, request.FILES,instance=jobdata)
+        
+        if jobform.is_valid():
+            jobdata = jobform.save(commit=False)
+            jobdata.CreatedBy = request.user
+            jobdata.save()
+            return redirect('browsejob')
+    else:
+        jobform = JobForm(instance=jobdata)
+    
+    context = {
+        'jobform':jobform
+    }
+    
+    return render(request, 'editjob.html',context)
+
+@login_required
+def deletejob(request, myid):
+    jobdata = get_object_or_404(JobModel, id=myid)
+    jobdata.delete()
+    return redirect('browsejob')
+
+@login_required
+def postedjob(request):
+    current_user = request.user
+    current_usertype =request.user.UserType
+    
+    if current_usertype == 'Recruiter':
+        jobdata = JobModel.objects.filter(CreatedBy=current_user)
+    else:
+        jobdata = JobModel.objects.all()
+    
+    context = {
+        'jobdata':jobdata
+    }
+        
+    
+    return render(request,'postedjob.html',context)
+
+
+def editprofile(request):
+    
+    userform = UserForm()
+    context = {
+        'userform':userform
+    }
+    
+    return render(request,'editprofile.html',context)

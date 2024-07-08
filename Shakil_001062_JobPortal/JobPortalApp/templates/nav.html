@@ -1,7 +1,15 @@
 <div class="topnav">
-    <a href="">Home</a>
-    <a href="{% url 'addjob' %}">Add Job</a>
-    <a href="{% url 'browsejob' %}">Browse Job</a>
-    <a href="{% url 'profile' %}">Profile</a>
-    <a class="active" href="{% url 'logoutpage' %}">Logout</a>
+    <div class="nav-links">
+        <a href="">Home</a>
+        <a href="{% url 'addjob' %}">Add Job</a>
+        <a href="{% url 'browsejob' %}">Browse Job</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a class="active" href="{% url 'logoutpage' %}">Logout</a>
+    </div>
+    <div class="search-container">
+        <form action="" method="GET">
+            <input type="text" class="mt-3" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i>Search</button>
+        </form>
+    </div>
 </div>

@@ -7,3 +7,9 @@ class JobForm(forms.ModelForm):
         fields = "__all__"
         exclude = ['Created_By']
         
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = JobPortalUser
+        fields = ['DisplayName','email']
+        exclude = ['UserType']
+        
