@@ -127,7 +127,7 @@
 
         <div class="job-card">
             <div class="job-header">
-                {{ job.Title }}
+                {{ job.job.Title }}
             </div>
             <div class="job-content">
                 <img src="{{ job.job.Created_By.recruitermodel.CompanyLogo.url }}" alt="">
@@ -136,7 +136,7 @@
                 <p class="address"><strong>Address:</strong> {{job.job.Created_By.recruitermodel.CompanyAddress}}</p>
 
                 <p class="salary"><strong>Number of Openings:</strong> {{ job.job.Number_Of_Openings }}</p>
-                <p class="experience"><strong>Qualification:</strong> {{ job.job.Skills_Set }}</p>
+                <p class="experience"><strong>Skill Set:</strong> {{ job.job.Skills_Set }}</p>
                 <p class="experience"><strong>Status:</strong> <button  class="button button2">{{ job.status }}</button></p>
             </div>
             </div>

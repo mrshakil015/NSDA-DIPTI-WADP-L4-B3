@@ -181,7 +181,8 @@ def searchpage(request):
     # search option 
     search=request.GET.get('search')
     jobs = JobModel.objects.filter(
-        Q(Skills_Set__icontains=search)
+        Q(Skills_Set__icontains=search)|
+        Q(Title__icontains=search)
         )
     jobDict={
         'job_filtered':jobs
@@ -196,7 +197,7 @@ def applyjob(request,myid):
     jobapply = jobApplyModel.objects.create(applicant=userdata,job=jobdata)
     
     
-    return redirect('profile')
+    return redirect('appliedjob')
     
     
     
