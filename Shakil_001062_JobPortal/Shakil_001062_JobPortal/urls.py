@@ -4,7 +4,11 @@ from JobPortalApp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('registrationPage/',registrationPage,name="registrationPage"),
     path('',loginPage,name="loginPage"),
+    path('registrationPage/',registrationPage,name="registrationPage"),
+    path('profile/',profile,name="profile"),
+    path('addjob/',addjob,name="addjob"),
+    path('browsejob/',browsejob,name="browsejob"),
+    path('logoutpage/',logoutpage,name="logoutpage"),
     
 ]

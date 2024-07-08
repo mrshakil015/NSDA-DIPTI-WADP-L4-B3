@@ -106,6 +106,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'JobPortalApp.JobPortalUser'
+LOGIN_URL = 'loginPage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -1,0 +1,72 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<style>
+    .button {
+        background-color: #04AA6D;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .button2 {
+        background-color: #008CBA;
+    }
+
+    /* Blue */
+    .button3 {
+        background-color: #f44336;
+    }
+
+    /* Red */
+    .button4 {
+        background-color: #32596b;
+    }
+
+    /* Gray */
+    .button5 {
+        background-color: #555555;
+    }
+
+    /* Black */
+
+    p {
+        margin-bottom: 0.5rem;
+    }
+</style>
+
+<div class="container d-flex justify-content-center mt-5 mb-3">
+    <div class="card col-lg-8">
+        <div class="card-body">
+            <div class="text-center">
+                <h3 class="card-title"><strong>Profile Information</strong></h3>
+            </div>
+            <div class="profil_img text-center">
+               
+                <h4 class="mt-2 mb-2"><strong>Shakil</strong></h4>
+            </div>
+
+            <div class="profile_btn text-center">
+                <a href="" class="button">Edit Profile</a>
+            </div>
+
+            {% block profileinfo %}
+
+            {% endblock profileinfo %}
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
