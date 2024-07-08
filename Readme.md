@@ -1,28 +1,28 @@
 User Type:
-    - Recruiters
-    - Jobseekers
+- Recruiters
+- Jobseekers
 
 CustomUserModel:
-    - username
-    - DisplayName
-    - Email
-    - Password
-    - ConfirmPassword
-    - UserType
+- username
+- DisplayName
+- Email
+- Password
+- ConfirmPassword
+- UserType
 
 RecruitersModel:
-    - CompanyName
-    - CompanyAddress
-    - CompanyLogo
-    - CompanyContact
+- CompanyName
+- CompanyAddress
+- CompanyLogo
+- CompanyContact
 
 SeekerModel:
-    - SkillsSet
-    - Resume
+- SkillsSet
+- Resume
 
 JobModel:
-    - Title
-    - NumberOfOpenings
-    - Category
-    - JobDescription
-    - SkillsSet
+- Title
+- NumberOfOpenings
+- Category
+- JobDescription
+- SkillsSet
