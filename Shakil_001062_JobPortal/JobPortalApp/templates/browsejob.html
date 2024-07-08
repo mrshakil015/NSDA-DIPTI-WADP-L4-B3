@@ -30,7 +30,7 @@
         margin-bottom: 10px;
         font-weight: bold;
         color: #fff;
-        background-color: #002131;
+        background-color: #04AA6D;
         padding: 10px;
         border-radius: 8px 8px 0 0;
     }
@@ -144,6 +144,7 @@
                 {% if user.UserType == 'Recruiters' %}
                 <a href="{% url 'editjob' job.id %}" class="button">Edit</a>
                 <a href="{% url 'deletejob' job.id %}" class="button button3">Delete</a>
+                <a href="{% url 'applicant' job.id %}" class="button button2">Applicant</a>
                 {% else %}
                 <a href="{% url 'applyjob' job.id %}" class="button button2">Apply Job</a>
             </div>

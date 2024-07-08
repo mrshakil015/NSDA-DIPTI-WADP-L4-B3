@@ -30,7 +30,7 @@
         margin-bottom: 10px;
         font-weight: bold;
         color: #fff;
-        background-color: #002131;
+        background-color: #04AA6D;
         padding: 10px;
         border-radius: 8px 8px 0 0;
     }
@@ -137,6 +137,7 @@
 
                 <p class="salary"><strong>Number of Openings:</strong> {{ job.job.Number_Of_Openings }}</p>
                 <p class="experience"><strong>Qualification:</strong> {{ job.job.Skills_Set }}</p>
+                <p class="experience"><strong>Status:</strong> <button  class="button button2">{{ job.status }}</button></p>
             </div>
             </div>
         {% endfor %}

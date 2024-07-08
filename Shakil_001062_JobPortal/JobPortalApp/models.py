@@ -29,10 +29,12 @@ class JobModel(models.Model):
     Skills_Set = models.TextField(null=True)
     Created_By = models.ForeignKey(JobPortalUser,on_delete=models.CASCADE,null=True)
     
+    def __str__(self):
+        return self.Title
     
 class jobApplyModel(models.Model):
     applicant = models.ForeignKey(JobPortalUser,on_delete=models.CASCADE, related_name='applicantuser', null=True)
-    job = models.ForeignKey(JobModel,on_delete=models.CASCADE, null=True)
+    job = models.ForeignKey(JobModel,on_delete=models.CASCADE, related_name='jobapply', null=True)
     status= models.CharField(max_length=100,default="Pending", null=True)
     
     def __str__(self):

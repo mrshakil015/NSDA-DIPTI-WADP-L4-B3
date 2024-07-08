@@ -15,6 +15,7 @@ urlpatterns = [
     
     path('searchpage/',searchpage,name="searchpage"),
     path('appliedjob/',appliedjob,name="appliedjob"),
+    path('applicant/<str:myid>',applicant,name="applicant"),
     
     path('applyjob/<str:myid>',applyjob,name="applyjob"),
     path('addjob/',addjob,name="addjob"),

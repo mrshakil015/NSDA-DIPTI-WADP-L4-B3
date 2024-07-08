@@ -195,31 +195,9 @@ def applyjob(request,myid):
     
     jobapply = jobApplyModel.objects.create(applicant=userdata,job=jobdata)
     
-    # seekerdata = get_object_or_404(SeekerModel, jobuser=request.user)
-    # if request.method == 'POST':
-    #     applyform = ApplyJobForm(request.POST)
-    #     applyuserform = ApplyJobuserForm(request.POST, instance=userdata)
-    #     seekerform = applyseekerform(request.POST,request.FILES, instance=seekerdata)
-        
-    #     if applyform.is_valid() and applyform.is_valid() and seekerform.is_valid():
-    #         job = applyform.save(commit=False)
-    #         job.applicant = userdata
-    #         job.job = jobdata
-    #         job.save()
-    #         return redirect('profile')
-    # else:
-    #     applyform = ApplyJobuserForm(instance=userdata)
-    #     seekerform = applyseekerform(instance=seekerdata)
-    
-    # context = {
-    #     'jobdata':jobdata,
-    #     'applyuserform':applyuserform,
-    #     'seekerform':seekerform,
-    # }
     
     return redirect('profile')
     
-    # return render(request,'profile.html',context)
     
     
 def appliedjob(request):
@@ -232,3 +210,16 @@ def appliedjob(request):
     }
     
     return render(request,'appliedjob.html',context)
+
+
+def applicant(request,myid):
+    
+    jobdata = get_object_or_404(JobModel, id=myid)
+    applicant = jobApplyModel.objects.filter(job=jobdata)
+    
+    context = {
+        'jobdata':jobdata,
+        'applicant': applicant,
+    }
+    
+    return render(request,'applicant.html',context)
