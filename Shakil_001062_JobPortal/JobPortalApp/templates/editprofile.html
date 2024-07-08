@@ -19,8 +19,16 @@
                     {% csrf_token %}
     
                     {{userform}}
+                    
+                    {% if user.UserType == 'Recruiters' %}
+                    {{recruiterform}}
+                    {% else %}
+                    {{seekerform}}
+                        
+                    {% endif %}
+                        
     
-                    <button type="submit" class="btn btn-primary btn-block">Update Job</button>
+                    <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
                     
                 </form>
             </div>

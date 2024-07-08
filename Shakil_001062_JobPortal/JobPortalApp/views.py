@@ -27,7 +27,7 @@ def registrationPage(request):
                 recrcreate = RecruitersModel.objects.create(jobuser = user)
                 recrcreate.save()
             else:
-                seekercreate = RecruitersModel.objects.create(jobuser = user)
+                seekercreate = SeekerModel.objects.create(jobuser = user)
                 seekercreate.save()
             return redirect('loginPage')
     
@@ -148,12 +148,44 @@ def postedjob(request):
     
     return render(request,'postedjob.html',context)
 
-
+@login_required
 def editprofile(request):
+    current_usertype = request.user.UserType
+    userdata = get_object_or_404(JobPortalUser, username=request.user)
+    if current_usertype == 'Recruiters':
+        recruiterdata = get_object_or_404(RecruitersModel, jobuser = request.user)
+        if request.method == 'POST':
+            userform = UserForm(request.POST, instance=userdata)
+            recruiterform = RecruitersForm(request.POST, request.FILES,instance=recruiterdata)
+            
+            if userform.is_valid() and recruiterform.is_valid():
+                userform.save()
+                recruiterform.save()
+                return redirect('profile')
+        else:
+            userform = UserForm(instance=userdata)
+            recruiterform = RecruitersForm(instance=recruiterdata)
+        context = {
+                'userform':userform,
+                'recruiterform':recruiterform,
+            }
+    elif current_usertype == 'Jobseekers':
+        seekerdata = get_object_or_404(SeekerModel, jobuser = request.user)
+        if request.method == 'POST':
+            userform = UserForm(request.POST, instance=userdata)
+            seekerform = SeekerForm(request.POST, request.FILES,instance=seekerdata)
+            
+            if userform.is_valid() and seekerform.is_valid():
+                userform.save()
+                seekerform.save()
+                return redirect('profile')
+        else:
+            userform = UserForm(instance=userdata)
+            seekerform = SeekerForm(instance=seekerdata)
     
-    userform = UserForm()
-    context = {
-        'userform':userform
-    }
+        context = {
+            'userform':userform,
+            'seekerform':seekerform,
+        }
     
     return render(request,'editprofile.html',context)

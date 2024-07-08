@@ -13,3 +13,15 @@ class UserForm(forms.ModelForm):
         fields = ['DisplayName','email']
         exclude = ['UserType']
         
+class RecruitersForm(forms.ModelForm):
+    class Meta:
+        model =RecruitersModel
+        fields = "__all__"
+        exclude = ['jobuser']
+        
+class SeekerForm(forms.ModelForm):
+    class Meta:
+        model =SeekerModel
+        fields = "__all__"
+        exclude = ['jobuser']
+        
