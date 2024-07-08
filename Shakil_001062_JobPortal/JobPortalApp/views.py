@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from .models import *
 from .forms import *
 
@@ -79,24 +80,7 @@ def browsejob(request):
         jobdata= JobModel.objects.filter(Created_By=current_user)
     else:
         jobdata= JobModel.objects.all()
-        
-
-    # jobdata = []
-    # if current_user.is_authenticated:
-    #     userdata = get_object_or_404(JobPortalUser, username=current_user)
-    #     for job in data:
-    #         applied = jobApplyModel.objects.filter(job=job, applicant=userdata).exists()
-    #         jobdata.append({
-    #             'job':job,
-    #             'applied':applied,
-    #         })
-        
-    # elif current_user.is_anonymous:
-    #    for job in data:
-    #         jobdata.append({
-    #             'job':job,
-    #             'applied':'False',
-    #         })
+    
     context = {
         'jobdata':jobdata
     }
@@ -189,3 +173,62 @@ def editprofile(request):
         }
     
     return render(request,'editprofile.html',context)
+
+
+
+def searchpage(request):
+    
+    # search option 
+    search=request.GET.get('search')
+    jobs = JobModel.objects.filter(
+        Q(Skills_Set__icontains=search)
+        )
+    jobDict={
+        'job_filtered':jobs
+    }
+    return render(request,'search.html',jobDict)
+
+@login_required
+def applyjob(request,myid):
+    jobdata = get_object_or_404(JobModel,id = myid)
+    userdata = get_object_or_404(JobPortalUser, username = request.user)
+    
+    jobapply = jobApplyModel.objects.create(applicant=userdata,job=jobdata)
+    
+    # seekerdata = get_object_or_404(SeekerModel, jobuser=request.user)
+    # if request.method == 'POST':
+    #     applyform = ApplyJobForm(request.POST)
+    #     applyuserform = ApplyJobuserForm(request.POST, instance=userdata)
+    #     seekerform = applyseekerform(request.POST,request.FILES, instance=seekerdata)
+        
+    #     if applyform.is_valid() and applyform.is_valid() and seekerform.is_valid():
+    #         job = applyform.save(commit=False)
+    #         job.applicant = userdata
+    #         job.job = jobdata
+    #         job.save()
+    #         return redirect('profile')
+    # else:
+    #     applyform = ApplyJobuserForm(instance=userdata)
+    #     seekerform = applyseekerform(instance=seekerdata)
+    
+    # context = {
+    #     'jobdata':jobdata,
+    #     'applyuserform':applyuserform,
+    #     'seekerform':seekerform,
+    # }
+    
+    return redirect('profile')
+    
+    # return render(request,'profile.html',context)
+    
+    
+def appliedjob(request):
+    current_user= request.user
+
+    jobdata= jobApplyModel.objects.filter(applicant=current_user)
+
+    context = {
+        'jobdata':jobdata
+    }
+    
+    return render(request,'appliedjob.html',context)

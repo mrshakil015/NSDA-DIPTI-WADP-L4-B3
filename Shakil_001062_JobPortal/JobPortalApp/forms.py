@@ -25,3 +25,18 @@ class SeekerForm(forms.ModelForm):
         fields = "__all__"
         exclude = ['jobuser']
         
+class ApplyJobuserForm(forms.ModelForm):
+    class Meta:
+        model = JobPortalUser
+        fields = ['DisplayName','email']
+        
+class ApplyJobForm(forms.ModelForm):
+    class Meta:
+        model = jobApplyModel
+        exclude = "__all__"
+        
+class applyseekerform(forms.ModelForm):
+    class Meta:
+        model = SeekerModel
+        fields= ['SkillsSet','Resume']
+        

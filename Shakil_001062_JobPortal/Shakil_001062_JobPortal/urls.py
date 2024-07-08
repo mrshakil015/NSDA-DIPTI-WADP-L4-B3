@@ -13,6 +13,10 @@ urlpatterns = [
     path('logoutpage/',logoutpage,name="logoutpage"),
     path('editprofile/',editprofile,name="editprofile"),
     
+    path('searchpage/',searchpage,name="searchpage"),
+    path('appliedjob/',appliedjob,name="appliedjob"),
+    
+    path('applyjob/<str:myid>',applyjob,name="applyjob"),
     path('addjob/',addjob,name="addjob"),
     path('editjob/<str:myid>',editjob,name="editjob"),
     path('deletejob/<str:myid>',deletejob,name="deletejob"),

@@ -1,13 +1,20 @@
 <div class="topnav">
     <div class="nav-links">
         <a href="">Home</a>
+        
+        {% if user.UserType == 'Recruiters' %}
         <a href="{% url 'addjob' %}">Add Job</a>
+        {% else %}
+        <a href="{% url 'appliedjob' %}">Applied Job</a>
+            
+    {% endif %}
+        
         <a href="{% url 'browsejob' %}">Browse Job</a>
         <a href="{% url 'profile' %}">Profile</a>
         <a class="active" href="{% url 'logoutpage' %}">Logout</a>
     </div>
     <div class="search-container">
-        <form action="" method="GET">
+        <form action="{% url 'searchpage' %}" method="GET">
             <input type="text" class="mt-3" placeholder="Search.." name="search">
             <button type="submit"><i class="fa fa-search"></i>Search</button>
         </form>
